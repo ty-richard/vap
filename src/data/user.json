@@ -1,0 +1,20 @@
+{
+    "user": {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "password": "password123",
+      "country": "United States",
+      "city": "Los Angeles",
+      "state": "California",
+      "zipCode": "90001",
+      "phoneNumber": "123-456-7890",
+      "signedUp": true,
+      "signedIn": true,
+      "creditCardNumber": "1234-5678-9012-3456",
+      "creditCardExpiration": "12/25",
+      "creditCardCVC": "123",
+      "itemsSaved": ["item1", "item2", "item3"]
+    }
+}
