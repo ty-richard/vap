@@ -15,7 +15,7 @@ export default function Profile() {
     <div className="w-full">
       <div className="p-6 border-2 border-navy rounded-lg mb-4">
         <div className="flex items-center justify-between mb-6">
-          <h2 className={`text-2xl font-semibold ${roboto_serif.className}`}>Personal Information</h2>
+          <h2 className={`text-2xl text-navy font-semibold ${roboto_serif.className}`}>Personal Information</h2>
           <button 
             onClick={() => setIsEditModalOpen(true)}
             className={`flex items-center gap-2 text-navy hover:text-navy ${inter.className}`}

@@ -1,1 +1,1 @@
-export type MenuOption = 'profile' | 'security' | 'billing'; 
+export type MenuOption = 'profile' | 'security' | 'billing' | 'invoices'; 

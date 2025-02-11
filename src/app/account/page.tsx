@@ -4,6 +4,7 @@ import AccountSubmenu from './components/accountSubmenu';
 import Profile from './components/profile';
 import Security from './components/security';
 import Billing from './components/billing';
+import Invoice from './components/invoice';
 import { useState } from 'react';
 import { MenuOption } from '@/types/accountTypes';
 
@@ -16,6 +17,8 @@ export default function AccountPage() {
         return <Security />;
       case 'billing':
         return <Billing />;
+      case 'invoices':
+        return <Invoice />;
       case 'profile':
       default:
         return <Profile />;

@@ -9,7 +9,7 @@ interface AccountSubmenuProps {
 }
 
 export default function AccountSubmenu({ activeOption, setActiveOption }: AccountSubmenuProps) {
-  const menuOptions: MenuOption[] = ['profile', 'security', 'billing'];
+  const menuOptions: MenuOption[] = ['profile', 'security', 'billing', 'invoices'];
 
   return (
     <div className="w-full">
