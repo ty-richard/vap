@@ -1,0 +1,1 @@
+export type MenuOption = 'profile' | 'security' | 'billing'; 
