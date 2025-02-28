@@ -1,43 +1,80 @@
 'use client'
 
-import { Suspense } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { PaperProduct } from '@/types/paperProductsTypes';
-import data from '@/data/paperProductsData.json';
+import { Product } from '@/types/productTypes';
 import { dm_sans, inter } from '@/app/fonts';
+import { pb } from '@/lib/pocketbase';
+import { formatDescription } from '@/utils/helpers';
 
-// Create a separate component for the content that uses useSearchParams
 function CategoryContent() {
+  const [products, setProducts] = useState<Product[]>([]);
   const searchParams = useSearchParams();
-  const category = searchParams.get('category');
-  const products: PaperProduct[] = data.paperProducts;
+  const id = searchParams.get('id');
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const productRecords = await pb.collection('products').getList(1, 100);
+        const fetchedProducts = productRecords.items
+          .map(record => ({
+            id: record.id,
+            name: record.name,
+            base_price: record.base_price,
+            case_per_pallet: record.case_per_pallet,
+            case_size: record.case_size,
+            categories: Array.isArray(record.categories) ? record.categories : [record.categories],
+            collectionId: record.collectionId,
+            collectionName: record.collectionName,
+            created: record.created,
+            updated: record.updated,
+            description: record.description,
+            image: pb.files.getURL(record, record.image),
+            sku: record.sku
+          }))
+          .filter(product => {
+            return product.categories.includes(id);
+          });
+
+        setProducts(fetchedProducts);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    if (id) {
+      fetchProducts();
+    }
+  }, [id]);
 
   return (
     <div className="container mx-auto p-8 text-navy">
       <h1 className={`text-2xl font-bold mb-6 ${dm_sans.className}`}>
-        {category ? category.charAt(0).toUpperCase() + category.slice(1) : 'All Products'}
+        Products
       </h1>
       
       <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${inter.className}`}>
         {products.map((product) => (
           <a 
-            href={`/product?sku=${product.productSKU}`} 
-            key={product.productSKU} 
+            href={`/product?id=${product.id}`} 
+            key={product.id} 
             className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
           >
             <div className="border rounded-lg p-4 shadow-sm">
               <img 
                 src={product.image} 
-                alt={product.productName}
-                className="w-full h-48 object-cover rounded-md mb-4"
+                alt={product.name}
+                className="w-full h-48 object-contain rounded-md mb-4"
               />
-              <h2 className={`text-xl font-semibold mb-2 ${dm_sans.className}`}>{product.productName}</h2>
-              <p className="text-gray-600 mb-2">{product.productDescription}</p>
+              <h2 className={`text-xl text-navy font-semibold mb-2 ${dm_sans.className}`}>{product.name}</h2>
+              <p className="text-navy mb-2">
+                {formatDescription(product.description)}
+              </p>
               <div className="flex justify-between items-center">
-                <span className="text-lg font-bold">${product.price}</span>
-                <span className="text-sm text-gray-500">Qty: {product.quantity}</span>
+                <span className="text-lg text-navy font-bold">${product.base_price}</span>
+                <span className="text-sm text-navy">Case Size: {product.case_size}</span>
               </div>
-            </div>
+            </div> 
           </a>
         ))}
       </div>

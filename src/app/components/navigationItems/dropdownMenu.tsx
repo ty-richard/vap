@@ -1,52 +1,55 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Category } from '@/types/dropdownTypes';
+import { Category } from '@/types/baseTypes';
 import { dm_sans } from '@/app/fonts';
-import data from '@/data/dropdownData.json';
+import { pb } from '@/lib/pocketbase';
 
 const DropdownMenu = () => {
-  const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
+  const [categories, setCategories] = useState<Category[]>([]);
   const router = useRouter();
 
-  const handleSubcategoryClick = (subcategory: string) => {
-    router.push(`/categories?category=${encodeURIComponent(subcategory.toLowerCase())}`);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch categories
+        const categoryRecords = await pb.collection('categories').getList(1, 20);
+        console.log('Category records:', categoryRecords.items);
+        const fetchedCategories = categoryRecords.items.map(record => ({
+          id: record.id,
+          collectionId: record.collectionId,
+          collectionName: record.collectionName,
+          name: record.name,
+          slug: record.slug,
+          description: record.description,
+          category_img: record.category_img,
+          created: record.created,
+          updated: record.updated
+        }));
+        setCategories(fetchedCategories);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <nav className={`w-full bg-[#001f3f] ${dm_sans.className} z-50`}>
       <ul className="flex justify-center items-center">
-        {data.categories.map((category: Category) => (
+        {categories.map((category: Category) => (
           <li
             key={category.id}
             className="relative"
-            onMouseEnter={() => setActiveDropdown(category.id)}
-            onMouseLeave={() => setActiveDropdown(null)}
           >
             <button
+              onClick={() => router.push(`/categories?id=${category.id}`)}
               className="px-6 py-4 text-gray-100 hover:bg-[#003366] transition-colors"
             >
               {category.name}
             </button>
-            {activeDropdown === category.id && (
-              <ul className="absolute left-0 w-64 bg-[#001f3f] shadow-lg z-50">
-                {category.subcategories.map((sub, index) => (
-                  <li key={index}>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleSubcategoryClick(sub);
-                      }}
-                      className="block px-6 py-3 text-gray-100 hover:bg-[#003366] transition-colors"
-                    >
-                      {sub}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
           </li>
         ))}
       </ul>

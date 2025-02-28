@@ -5,11 +5,13 @@ import Link from 'next/link'
 import { Bars3Icon, ShoppingCartIcon } from '@heroicons/react/24/outline'
 import { dm_sans, inter } from '@/app/fonts'
 import clsx from 'clsx'
+import SignInForm from '@/app/components/forms/signinform'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [cartCount] = useState(0)
+  const [isSignInOpen, setIsSignInOpen] = useState(false)
 
   return (
     <nav className="bg-light px-4 py-3">
@@ -50,7 +52,10 @@ export default function Navbar() {
           </div>
           <div className="relative">
             <div className="absolute -top-1 -right-1 h-3 w-3 bg-mint rounded-full" />
-            <button className="border-2 border-navy text-navy px-4 py-2 rounded-lg hover:bg-navy hover:text-light transition-colors">
+            <button 
+              onClick={() => setIsSignInOpen(true)}
+              className="border-2 border-navy text-navy px-4 py-2 rounded-lg hover:bg-navy hover:text-light transition-colors"
+            >
               SIGN IN
             </button>
           </div>
@@ -78,6 +83,14 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {isSignInOpen && (
+        <div className="fixed inset-0 bg-navy/50 flex items-center justify-center p-4 z-50">
+          <div className="bg-light w-full max-w-lg rounded-xl">
+            <SignInForm onClose={() => setIsSignInOpen(false)} />
+          </div>
         </div>
       )}
     </nav>
