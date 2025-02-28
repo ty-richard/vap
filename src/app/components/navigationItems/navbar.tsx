@@ -20,12 +20,6 @@ export default function Navbar() {
           VAP
         </span>
         <div className="flex items-center gap-4">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-navy hover:opacity-80"
-          >
-            <Bars3Icon className="h-6 w-6" />
-          </button>
           <div className="relative">
             <button
               onClick={() => setIsCartOpen(!isCartOpen)}
@@ -59,6 +53,12 @@ export default function Navbar() {
               SIGN IN
             </button>
           </div>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="text-navy hover:opacity-80"
+          >
+            <Bars3Icon className="h-6 w-6" />
+          </button>
         </div>
       </div>
 

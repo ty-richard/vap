@@ -6,6 +6,7 @@ import { dm_sans, inter } from '@/app/fonts';
 import { Suspense, useState, useEffect } from 'react';
 import { Product } from '@/types/productTypes';
 import { pb } from '@/lib/pocketbase';
+import { stripHtmlTags } from '@/utils/helpers';
 
 function ProductContent() {
   const [product, setProduct] = useState<Product | null>(null);
@@ -72,7 +73,7 @@ function ProductContent() {
           <div className={`${inter.className} text-navy mb-6`}>
             <p className="text-xl font-bold mb-2">${product.base_price}</p>
             <p className="text-lg mb-4">SKU: {product.sku}</p>
-            <p className="mb-4">{product.description}</p>
+            <p className="mb-4">{stripHtmlTags(product.description)}</p>
             <p className="mb-6">Case Size: {product.case_size}</p>
           </div>
 

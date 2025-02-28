@@ -15,3 +15,16 @@ export function formatDescription(description: string, maxLength: number = 250):
   
   return trimmedText + ellipsis;
 }
+
+/**
+ * Removes HTML tags from a text string
+ * @param text - The input string that may contain HTML tags
+ * @returns A cleaned string without HTML tags
+ * 
+ * Example:
+ * Input: "<p>This is a description</p><ul><li>Item 1</li><li>Item 2</li></ul>"
+ * Output: "This is a description Item 1 Item 2"
+ */
+export function stripHtmlTags(text: string): string {
+  return text.replace(/<\/?[^>]+(>|$)/g, '');
+}
