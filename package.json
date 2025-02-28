@@ -10,7 +10,15 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "release": "yarn run standard-version --no-verify",
+    "release:pre": "yarn run release --prerelease rc",
+    "release:major": "yarn run release --release-as major",
+    "release:minor": "yarn run release --release-as minor",
+    "release:patch": "yarn run release --release-as patch",
+    "release:alpha": "yarn run release --release-as patch --prerelease alpha",
+    "release:alpha:minor": "yarn run release --release-as minor --prerelease alpha",
+    "release:alpha:major": "yarn run release --release-as major --prerelease alpha"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
