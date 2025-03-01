@@ -14,8 +14,4 @@ interface Category extends BaseRecord {
   subcategories?: string[];
 }
 
-interface DropdownData {
-  categories: Category[];
-}
-
-export type { BaseRecord, Category, DropdownData }; 
+export type { BaseRecord, Category }; 
