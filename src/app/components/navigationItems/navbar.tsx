@@ -31,7 +31,7 @@ export default function Navbar() {
               </span>
             </button>
             {isCartOpen && (
-              <div className="absolute top-8 right-0 bg-white shadow-lg rounded-lg py-2 w-64">
+              <div className="absolute top-8 right-0 bg-white shadow-lg rounded-lg py-2 w-64 z-50">
                 {cartCount === 0 ? (
                   <p className={clsx(dm_sans.className, "text-navy px-4 py-2 text-center")}>
                     Your shopping cart is empty
@@ -64,7 +64,7 @@ export default function Navbar() {
 
       {/* Dropdown Menu */}
       {isMenuOpen && (
-        <div className="absolute top-16 right-4 bg-white shadow-lg rounded-lg py-2 w-48">
+        <div className="absolute top-16 right-4 bg-white shadow-lg rounded-lg py-2 w-48 z-50">
           <ul className={clsx(inter.className, "text-navy")}>
             {[
               { name: 'Home', href: '/' },

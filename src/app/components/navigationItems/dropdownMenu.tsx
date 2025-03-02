@@ -37,7 +37,7 @@ const DropdownMenu = () => {
   }, []);
 
   return (
-    <nav className={`w-full bg-[#001f3f] ${dm_sans.className} z-50`}>
+    <nav className={`w-full bg-[#001f3f] ${dm_sans.className} z-10`}>
       <ul className="flex justify-center items-center">
         {categories.map((category: Category) => (
           <li
