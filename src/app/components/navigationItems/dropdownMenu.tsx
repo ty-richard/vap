@@ -15,7 +15,6 @@ const DropdownMenu = () => {
       try {
         // Fetch categories
         const categoryRecords = await pb.collection('categories').getList(1, 20);
-        console.log('Category records:', categoryRecords.items);
         const fetchedCategories = categoryRecords.items.map(record => ({
           id: record.id,
           collectionId: record.collectionId,
