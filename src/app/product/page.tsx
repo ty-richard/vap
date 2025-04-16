@@ -7,6 +7,7 @@ import { Suspense, useState, useEffect } from 'react';
 import { Product } from '@/types/productTypes';
 import { pb } from '@/lib/pocketbase';
 import { stripHtmlTags } from '@/utils/helpers';
+import { Cart } from '@/types/cartTypes';
 
 function ProductContent() {
   const [product, setProduct] = useState<Product | null>(null);
@@ -44,6 +45,31 @@ function ProductContent() {
     fetchProduct();
   }, [productId]);
 
+  const handleAddToCart = () => {
+    if (!product) return;
+    
+    const cartJson = localStorage.getItem('cart');
+    const cart: Cart = cartJson ? JSON.parse(cartJson) : { items: [] };
+    
+    const existingItem = cart.items.find(item => item.id === product.id);
+    
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      cart.items.push({
+        id: product.id,
+        name: product.name,
+        price: product.base_price,
+        image: product.image,
+        quantity: 1
+      });
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+    // Trigger a custom event to notify CartButton
+    window.dispatchEvent(new Event('cartUpdated'));
+  };
+
   if (loading) {
     return <div className="container mx-auto p-8">Loading...</div>;
   }
@@ -77,7 +103,10 @@ function ProductContent() {
             <p className="mb-6">Case Size: {product.case_size}</p>
           </div>
 
-          <button className="flex items-center justify-center gap-2 px-6 py-3 text-navy border-2 border-navy bg-mint rounded-lg hover:bg-sage transition-colors">
+          <button 
+            onClick={handleAddToCart}
+            className="flex items-center justify-center gap-2 px-6 py-3 text-navy border-2 border-navy bg-mint rounded-lg hover:bg-sage transition-colors"
+          >
             <ShoppingCartIcon className="h-5 w-5" />
             <span className={`${dm_sans.className} font-bold`}>Add to Cart</span>
           </button>
