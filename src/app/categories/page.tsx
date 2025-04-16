@@ -6,11 +6,13 @@ import { Product } from '@/types/productTypes';
 import { dm_sans, inter } from '@/app/fonts';
 import { pb } from '@/lib/pocketbase';
 import { formatDescription } from '@/utils/helpers';
+import Link from 'next/link';
 
 function CategoryContent() {
   const [products, setProducts] = useState<Product[]>([]);
   const searchParams = useSearchParams();
   const id = searchParams.get('id');
+  const categoryName = searchParams.get('name');
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -50,13 +52,20 @@ function CategoryContent() {
   return (
     <div className="container mx-auto p-8 text-navy">
       <h1 className={`text-2xl font-bold mb-6 ${dm_sans.className}`}>
-        Products
+        {`${categoryName} Products`}
       </h1>
+      <nav className="mb-4">
+        <ol className={`flex items-center space-x-2 ${inter.className}`}>
+          <li>
+            <Link href="/" className="text-navy hover:text-sage">Home</Link>
+          </li>
+        </ol>
+      </nav>
       
       <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ${inter.className}`}>
         {products.map((product) => (
           <a 
-            href={`/product?id=${product.id}`} 
+            href={`/product?id=${product.id}&categoryId=${id}&categoryName=${encodeURIComponent(categoryName || '')}`} 
             key={product.id} 
             className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
           >

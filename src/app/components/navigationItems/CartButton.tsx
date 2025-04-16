@@ -21,7 +21,6 @@ export default function CartButton() {
 
     loadCart();
 
-    // Listen for cart updates
     const handleCartUpdate = () => loadCart();
     window.addEventListener('cartUpdated', handleCartUpdate);
 
@@ -36,14 +35,13 @@ export default function CartButton() {
     const updatedCart = {
       items: cart.items.map(item => {
         if (item.id === itemId) {
-          // Decrease quantity by 1
           return {
             ...item,
             quantity: item.quantity - 1
           };
         }
         return item;
-      }).filter(item => item.quantity > 0) // Remove items with quantity 0
+      }).filter(item => item.quantity > 0)
     };
     
     localStorage.setItem('cart', JSON.stringify(updatedCart));

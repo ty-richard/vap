@@ -44,7 +44,7 @@ const DropdownMenu = () => {
             className="relative"
           >
             <button
-              onClick={() => router.push(`/categories?id=${category.id}`)}
+              onClick={() => router.push(`/categories?id=${category.id}&name=${encodeURIComponent(category.name)}`)}
               className="px-6 py-4 text-gray-100 hover:bg-[#003366] transition-colors"
             >
               {category.name}

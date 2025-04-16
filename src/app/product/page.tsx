@@ -8,12 +8,15 @@ import { Product } from '@/types/productTypes';
 import { pb } from '@/lib/pocketbase';
 import { stripHtmlTags } from '@/utils/helpers';
 import { Cart } from '@/types/cartTypes';
+import Link from 'next/link';
 
 function ProductContent() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
   const productId = searchParams.get('id');
+  const categoryId = searchParams.get('categoryId');
+  const categoryName = searchParams.get('categoryName');
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -80,8 +83,24 @@ function ProductContent() {
 
   return (
     <div className="container mx-auto p-8">
+      <nav className="mb-4">
+        <ol className={`flex items-center space-x-2 ${inter.className}`}>
+          <li>
+            <Link href="/" className="text-navy hover:text-sage">Home</Link>
+          </li>
+          <li className="flex items-center space-x-2">
+            <span className="text-navy">/</span>
+            <Link 
+              href={`/categories?id=${categoryId}&name=${encodeURIComponent(categoryName || '')}`} 
+              className="text-navy hover:text-sage"
+            >
+              {`${categoryName} Products` || 'Products'}
+            </Link>
+          </li>
+        </ol>
+      </nav>
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Product Image */}
         <div className="rounded-lg overflow-hidden">
           <img
             src={product.image}
