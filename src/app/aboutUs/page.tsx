@@ -10,7 +10,7 @@ export default function AboutUsPage() {
         <div 
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/static/images/stockTravelPhoto.jpg')",
+            backgroundImage: "url('/static/images/stockPhoto.jpg')",
           }}
         >
           <div className="absolute inset-0 bg-black/30" />
@@ -29,8 +29,8 @@ export default function AboutUsPage() {
       <div className="grid gap-8 md:grid-cols-2 px-4">
         <div className="h-[400px] relative w-full">
           <Image 
-            src="/static/images/stockTravelPhoto.jpg"
-            alt="Travel destination" 
+            src="/static/images/stockPhoto.jpg"
+            alt="Stock Photo" 
             className="object-contain rounded-2xl"
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -48,8 +48,8 @@ export default function AboutUsPage() {
 
       <div className="w-full h-[400px] relative my-12">
         <Image 
-          src="/static/images/stockTravelPhoto.jpg"
-          alt="Travel destination" 
+          src="/static/images/stockPhoto.jpg"
+          alt="Stock Photo" 
           className="object-cover rounded-lg"
           fill
           sizes="100vw"
@@ -72,38 +72,6 @@ export default function AboutUsPage() {
           <p className={`${inter.className} text-md text-navy`}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </p>
-        </div>
-      </div>
-      <div className="grid md:grid-cols-2 gap-8 px-4 mt-12">
-        <div className="relative h-[300px]">
-          <Image 
-            src="/static/images/stockTravelPhoto.jpg"
-            alt="Press section" 
-            className="object-cover rounded-lg"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-          <div className="absolute inset-0 bg-black/30 rounded-lg" />
-          <div className="relative h-full flex items-center justify-center">
-            <h2 className={`${dm_sans.className} text-6xl font-extrabold text-sage lowercase`}>
-              Press
-            </h2>
-          </div>
-        </div>
-        <div className="relative h-[300px]">
-          <Image 
-            src="/static/images/stockTravelPhoto.jpg"
-            alt="Careers section" 
-            className="object-cover rounded-lg"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-          <div className="absolute inset-0 bg-black/30 rounded-lg" />
-          <div className="relative h-full flex items-center justify-center">
-            <h2 className={`${dm_sans.className} text-6xl font-extrabold text-sage lowercase`}>
-              Careers
-            </h2>
-          </div>
         </div>
       </div>
       <div className="grid md:grid-cols-2 gap-8 px-4 mt-12 items-center">
