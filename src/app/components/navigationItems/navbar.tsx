@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Bars3Icon } from '@heroicons/react/24/outline'
-import { dm_sans, inter } from '@/app/fonts'
+import { inter } from '@/app/fonts'
+import Image from "next/image"
 import clsx from 'clsx'
 import SignInForm from '@/app/components/forms/signinform'
 import CartButton from '@/app/components/navigationItems/CartButton'
@@ -16,9 +17,15 @@ export default function Navbar() {
   return (
     <nav className="bg-light px-4 py-3">
       <div className="flex items-center justify-between">
-        <span className={clsx(dm_sans.className, "text-navy font-bold text-2xl")}>
-          VAP
-        </span>
+        <Link href="/" className="text-navy hover:text-gray-300">
+          <Image 
+            src="/static/icons/veterans-alliance-partners_logo.png"
+            alt="xplorist logo"
+            width={50}
+            height={12}
+            priority
+          />
+        </Link>
         
         <SearchBar />
 

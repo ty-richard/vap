@@ -60,7 +60,7 @@ export default function SearchBar() {
       />
       <MagnifyingGlassIcon className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-navy" />
       
-      {searchResults.length > 0 && searchTerm.length >= 2 && (
+      {searchResults.length > 0 && searchTerm.length >= 3 && (
         <div className="absolute w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto">
           {searchResults.map((product) => (
             <Link
