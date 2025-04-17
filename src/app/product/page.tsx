@@ -88,15 +88,17 @@ function ProductContent() {
           <li>
             <Link href="/" className="text-navy hover:text-sage">Home</Link>
           </li>
-          <li className="flex items-center space-x-2">
-            <span className="text-navy">/</span>
-            <Link 
-              href={`/categories?id=${categoryId}&name=${encodeURIComponent(categoryName || '')}`} 
-              className="text-navy hover:text-sage"
-            >
-              {`${categoryName} Products` || 'Products'}
-            </Link>
-          </li>
+          {categoryId && categoryName && (
+            <li className="flex items-center space-x-2">
+              <span className="text-navy">/</span>
+              <Link 
+                href={`/categories?id=${categoryId}&name=${encodeURIComponent(categoryName)}`} 
+                className="text-navy hover:text-sage"
+              >
+                {`${categoryName} Products`}
+              </Link>
+            </li>
+          )}
         </ol>
       </nav>
 

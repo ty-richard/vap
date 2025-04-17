@@ -7,6 +7,7 @@ import { dm_sans, inter } from '@/app/fonts'
 import clsx from 'clsx'
 import SignInForm from '@/app/components/forms/signinform'
 import CartButton from '@/app/components/navigationItems/CartButton'
+import SearchBar from '@/app/components/navigationItems/SearchBar'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -18,6 +19,9 @@ export default function Navbar() {
         <span className={clsx(dm_sans.className, "text-navy font-bold text-2xl")}>
           VAP
         </span>
+        
+        <SearchBar />
+
         <div className="flex items-center gap-4">
           <CartButton />
           <div className="relative">
