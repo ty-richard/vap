@@ -11,6 +11,7 @@ export default function AboutUsPage() {
   const [currentView, setCurrentView] = useState('About Us');
 
   const renderView = () => {
+    console.log("currentView", currentView);
     switch (currentView) {
       case 'About Us':
         return <AboutUsView />;
