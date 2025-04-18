@@ -8,7 +8,7 @@ import CaseStudiesView from './views/CaseStudiesView';
 import GovernmentServicesView from './views/GovernmentServicesView';
 import CatalogPDFView from './views/CatalogPDFView';
 
-export default function AboutUsPage() {
+export default function AboutPage() {
   const [currentView, setCurrentView] = useState('About Us');
 
   const renderView = () => {

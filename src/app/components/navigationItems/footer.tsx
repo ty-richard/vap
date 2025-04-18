@@ -28,7 +28,7 @@ const Footer = () => {
         <nav className="w-2/3 flex flex-col items-center justify-center">
           <ul className="text-center">
             <li className="mb-1">
-              <Link href="/aboutus" className="hover:text-light-600">
+              <Link href="/about" className="hover:text-light-600">
                 ABOUT US
               </Link>
             </li>
