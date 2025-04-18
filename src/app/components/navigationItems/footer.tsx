@@ -37,11 +37,6 @@ const Footer = () => {
                 FEEDBACK
               </Link>
             </li>
-            <li className="mb-1">
-              <Link href="/contactus" className="hover:text-light-600">
-                CONTACT US
-              </Link>
-            </li>
           </ul>
           <div className="text-sm mt-2 text-center">
             <Link href="/terms" className="hover:underline">Terms</Link>

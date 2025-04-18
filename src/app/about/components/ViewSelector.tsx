@@ -11,7 +11,7 @@ const views = [
   'Company History',
   'Case Studies',
   'Government Services',
-  'Catalog PDF'
+  'Catalog'
 ];
 
 export default function ViewSelector({ currentView, onViewChange }: ViewSelectorProps) {

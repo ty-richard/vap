@@ -13,7 +13,7 @@ export default function ConnectForm() {
     message: '',
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
@@ -55,13 +55,12 @@ export default function ConnectForm() {
         className={`w-full p-2 border border-navy rounded-xl bg-light ${inter.className}`}
       />
       
-      <input
-        type="message"
+      <textarea
         name="message"
         placeholder="MESSAGE"
         value={formData.message}
         onChange={handleInputChange}
-        className={`w-full p-2 border border-navy rounded-xl bg-light ${inter.className}`}
+        className={`w-full p-2 border border-navy rounded-xl bg-light ${inter.className} min-h-[120px]`}
       />
       
       <button

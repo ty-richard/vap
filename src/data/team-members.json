@@ -1,13 +1,13 @@
 [
   {
     "name": "Jason Wadsworth",
-    "role": "Co-Founder, CEO",
+    "role": "CEO and Founder",
     "bio": "Jason is an Air Force Veteran with 20 years of government experience. His interest in technology led him to establish a technology company that understands the strategic needs of government organizations. He is a fellow at the Arizona State University’s, Center for Law, Science and Innovation where he researched the disruptive implications of blockchain technology, drones, and other emerging technology.",
     "imageUrl": "/placeholder-team.jpg"
   },
   {
     "name": "Brent Wilson",
-    "role": "Co-Founder, CTO",
+    "role": "Chief Technology Officer",
     "bio": "Brent Wilson has 25 years of experience in software development, app development and web application development. As CTO, Brent oversees VAT’s software development and aligns VAT’s technical capabilities to advise and execute on serviceable gaps for customers as they seek innovative next generation technology.",
     "imageUrl": "/placeholder-team.jpg"
   },
@@ -19,7 +19,7 @@
   },
   {
     "name": "Tyler Webb",
-    "role": "Operations/General Counsel",
+    "role": "Board Advisor",
     "bio": "Tyler Webb is the operations advisor and general counsel responsible for overseeing Veterans Alliance Technology’s legal affairs, partnership and operations strategy. Tyler Webb attended law school at the Sandra Day O’Connor College of Law at Arizona State University. Tyler sits as a fellow for the Center for Law, Science and Innovation at Arizona State University and supports various start ups, community organizations and various small business owners with his legal expertise.",
     "imageUrl": "/placeholder-team.jpg"
   }

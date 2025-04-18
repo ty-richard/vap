@@ -77,7 +77,7 @@ export default function AboutUsView() {
       <div className="grid md:grid-cols-2 gap-8 px-4 mt-12 items-center">
         <div className="text-center md:text-left">
           <h2 className={`${dm_sans.className} text-4xl md:text-6xl font-extrabold text-navy lowercase`}>
-            Let&apos;s stay in touch
+            Contact Us
           </h2>
         </div>
         <div>

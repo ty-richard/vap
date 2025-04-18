@@ -6,7 +6,7 @@ import AboutUsView from './views/AboutUsView';
 import CompanyHistoryView from './views/CompanyHistoryView';
 import CaseStudiesView from './views/CaseStudiesView';
 import GovernmentServicesView from './views/GovernmentServicesView';
-import CatalogPDFView from './views/CatalogPDFView';
+import CatalogView from './views/CatalogView';
 
 export default function AboutPage() {
   const [currentView, setCurrentView] = useState('About Us');
@@ -21,8 +21,8 @@ export default function AboutPage() {
         return <CaseStudiesView />;
       case 'Government Services':
         return <GovernmentServicesView />;
-      case 'Catalog PDF':
-        return <CatalogPDFView />;
+      case 'Catalog':
+        return <CatalogView />;
       default:
         return <AboutUsView />;
     }
