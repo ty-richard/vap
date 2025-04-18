@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const hideFooter = ['/product', '/item'].includes(pathname);
+  const hideFooter = ['/product'].includes(pathname);
 
   return (
     <html lang="en">
