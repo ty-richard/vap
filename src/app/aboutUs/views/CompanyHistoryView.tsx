@@ -1,89 +1,46 @@
 import React from 'react';
+import { dm_sans } from '@/app/fonts';
 import Image from 'next/image';
-import { dm_sans, inter, roboto_serif } from '@/app/fonts';
-import ConnectForm from '@/app/components/forms/connectform';
+import teamMembers from '@/data/team-members.json';
 
 export default function CompanyHistoryView() {
   return (
-    <main className="container mx-auto mb-4">
-      <div className="relative h-[400px] mb-12">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/static/images/stockPhoto.jpg')",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/30" />
-          <div className="relative h-full flex items-center justify-center">
-            <h1 className={`${dm_sans.className} text-6xl font-extrabold text-sage lowercase`}>
-              About Us
-            </h1>
-          </div>
-        </div>
-      </div>
-      <div className="px-4 my-12">
-        <p className={`${roboto_serif.className} text-xl text-navy`}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-      <div className="grid gap-8 md:grid-cols-2 px-4">
-        <div className="h-[400px] relative w-full">
-          <Image 
-            src="/static/images/stockPhoto.jpg"
-            alt="Stock Photo" 
-            className="object-contain rounded-2xl"
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
-        </div>
-        <div className="flex flex-col justify-center">
-          <h2 className={`${dm_sans.className} text-6xl font-extrabold text-navy mb-4 lowercase`}>
-            Our Purpose
-          </h2>
-          <p className={`${inter.className} text-sm text-navy`}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-        </div>
-      </div>
-
-      <div className="w-full h-[400px] relative my-12">
-        <Image 
-          src="/static/images/stockPhoto.jpg"
-          alt="Stock Photo" 
-          className="object-cover rounded-lg"
+    <div className="w-full">
+      {/* Hero Image or Video */}
+      <div className="relative w-full h-[400px]">
+        <Image
+          src="/static/images/stock_wholesale.jpg"
+          alt="Company History"
           fill
-          sizes="100vw"
+          className="object-cover"
+          priority
         />
       </div>
-      <div className="grid md:grid-cols-2 gap-8 px-4 relative">
-        <div className="text-center">
-          <h2 className={`${dm_sans.className} text-6xl font-extrabold text-sage mb-6 lowercase`}>
-            Our Mission
-          </h2>
-          <p className={`${inter.className} text-md text-navy`}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
-        </div>
-        <div className="hidden md:block absolute h-full w-px bg-navy left-1/2 transform -translate-x-1/2" />
-        <div className="text-center">
-          <h2 className={`${dm_sans.className} text-6xl font-extrabold text-sage mb-6 lowercase`}>
-            Our Values
-          </h2>
-          <p className={`${inter.className} text-md text-navy`}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </p>
-        </div>
-      </div>
-      <div className="grid md:grid-cols-2 gap-8 px-4 mt-12 items-center">
-        <div className="text-center md:text-left">
-          <h2 className={`${dm_sans.className} text-4xl md:text-6xl font-extrabold text-navy lowercase`}>
-            Let&apos;s stay in touch
-          </h2>
-        </div>
-        <div>
-          <ConnectForm />
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <h2 className={`${dm_sans.className} text-4xl font-bold text-navy text-center mb-12`}>
+          Our Team
+        </h2>
+        {/* Team Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="text-center">
+              <div className="relative w-full aspect-square mb-4">
+                <Image
+                  src={member.imageUrl}
+                  alt={member.name}
+                  fill
+                  className="object-cover rounded-lg"
+                />
+              </div>
+              <h3 className={`${dm_sans.className} text-xl font-semibold text-navy mb-2`}>
+                {member.name}
+              </h3>
+              <p className="text-gray-600 font-medium mb-2">{member.role}</p>
+              <p className="text-gray-500 text-sm">{member.bio}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </main>
+    </div>
   );
 } 

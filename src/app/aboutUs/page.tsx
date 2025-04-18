@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import ViewSelector from './components/ViewSelector';
+import AboutUsView from './views/AboutUsView';
 import CompanyHistoryView from './views/CompanyHistoryView';
 import CaseStudiesView from './views/CaseStudiesView';
 import GovernmentServicesView from './views/GovernmentServicesView';
@@ -11,8 +12,9 @@ export default function AboutUsPage() {
   const [currentView, setCurrentView] = useState('About Us');
 
   const renderView = () => {
-    console.log("currentView", currentView);
     switch (currentView) {
+      case 'About Us':
+        return <AboutUsView />;
       case 'Company History':
         return <CompanyHistoryView />;
       case 'Case Studies':
@@ -22,7 +24,7 @@ export default function AboutUsPage() {
       case 'Catalog PDF':
         return <CatalogPDFView />;
       default:
-        return <CompanyHistoryView />;
+        return <AboutUsView />;
     }
   };
 
