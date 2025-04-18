@@ -7,8 +7,8 @@ import { inter } from '@/app/fonts'
 import Image from "next/image"
 import clsx from 'clsx'
 import SignInForm from '@/app/components/forms/signinform'
-import CartButton from '@/app/components/navigationItems/CartButton'
-import SearchBar from '@/app/components/navigationItems/SearchBar'
+import CartButton from '@/app/components/cart/CartButton'
+import SearchBar from '@/app/components/search/SearchBar'
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
