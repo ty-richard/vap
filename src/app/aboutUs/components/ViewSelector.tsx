@@ -7,7 +7,7 @@ interface ViewSelectorProps {
 }
 
 const views = [
-  'About Us',
+  'Company History',
   'Case Studies',
   'Government Services',
   'Catalog PDF'

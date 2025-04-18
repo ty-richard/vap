@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { dm_sans, inter, roboto_serif } from '@/app/fonts';
 import ConnectForm from '@/app/components/forms/connectform';
 
-export default function AboutUsView() {
+export default function CompanyHistoryView() {
   return (
     <main className="container mx-auto mb-4">
       <div className="relative h-[400px] mb-12">

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import ViewSelector from './components/ViewSelector';
-import AboutUsView from './views/AboutUsView';
+import CompanyHistoryView from './views/CompanyHistoryView';
 import CaseStudiesView from './views/CaseStudiesView';
 import GovernmentServicesView from './views/GovernmentServicesView';
 import CatalogPDFView from './views/CatalogPDFView';
@@ -13,8 +13,8 @@ export default function AboutUsPage() {
   const renderView = () => {
     console.log("currentView", currentView);
     switch (currentView) {
-      case 'About Us':
-        return <AboutUsView />;
+      case 'Company History':
+        return <CompanyHistoryView />;
       case 'Case Studies':
         return <CaseStudiesView />;
       case 'Government Services':
@@ -22,7 +22,7 @@ export default function AboutUsPage() {
       case 'Catalog PDF':
         return <CatalogPDFView />;
       default:
-        return <AboutUsView />;
+        return <CompanyHistoryView />;
     }
   };
 
