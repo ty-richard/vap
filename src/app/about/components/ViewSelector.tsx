@@ -9,7 +9,7 @@ interface ViewSelectorProps {
 const views = [
   'About Us',
   'Company History',
-  'Case Studies',
+  'Newsletter',
   'Government Services',
   'Catalog'
 ];

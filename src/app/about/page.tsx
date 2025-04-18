@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import ViewSelector from './components/ViewSelector';
 import AboutUsView from './views/AboutUsView';
 import CompanyHistoryView from './views/CompanyHistoryView';
-import CaseStudiesView from './views/CaseStudiesView';
+import NewsletterView from './views/NewsletterView';
 import GovernmentServicesView from './views/GovernmentServicesView';
 import CatalogView from './views/CatalogView';
 
@@ -17,8 +17,8 @@ export default function AboutPage() {
         return <AboutUsView />;
       case 'Company History':
         return <CompanyHistoryView />;
-      case 'Case Studies':
-        return <CaseStudiesView />;
+      case 'Newsletter':
+        return <NewsletterView />;
       case 'Government Services':
         return <GovernmentServicesView />;
       case 'Catalog':
