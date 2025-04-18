@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import ViewSelector from './components/ViewSelector';
-import AboutUsView from './components/views/AboutUsView';
-import CaseStudiesView from './components/views/CaseStudiesView';
-import GovernmentServicesView from './components/views/GovernmentServicesView';
-import CatalogPDFView from './components/views/CatalogPDFView';
+import AboutUsView from './views/AboutUsView';
+import CaseStudiesView from './views/CaseStudiesView';
+import GovernmentServicesView from './views/GovernmentServicesView';
+import CatalogPDFView from './views/CatalogPDFView';
 
 export default function AboutUsPage() {
   const [currentView, setCurrentView] = useState('About Us');
