@@ -18,6 +18,21 @@ export default {
         light: '#EBEAEB',
         medium: '#716D79',
       },
+      keyframes: {
+        'fade-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translate(-50%, 10px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translate(-50%, 0)'
+          },
+        }
+      },
+      animation: {
+        'fade-up': 'fade-up 0.3s ease-out forwards'
+      }
     },
   },
   plugins: [
