@@ -39,10 +39,11 @@ export default function CartButton() {
                 collectionId: record.collectionId,
                 collectionName: record.collectionName,
                 created: record.created,
-                updated: record.updated,
                 description: record.description,
                 image: pb.files.getURL(record, record.image),
-                sku: record.sku
+                sku: record.sku,
+                updated: record.updated,
+                variations: record.variations
               };
               setProducts(prev => ({ ...prev, [item.id]: product }));
               // Initialize isFirstHalf state for this product

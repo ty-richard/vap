@@ -13,13 +13,37 @@ import Link from 'next/link';
 function ProductContent() {
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
-  const [isFirstHalf, setIsFirstHalf] = useState(true);
   const [showQuantityFeedback, setShowQuantityFeedback] = useState(false);
   const [quantityAdded, setQuantityAdded] = useState(0);
+  const [selectedQuantity, setSelectedQuantity] = useState(1);
   const searchParams = useSearchParams();
   const productId = searchParams.get('id');
   const categoryId = searchParams.get('categoryId');
   const categoryName = searchParams.get('categoryName');
+
+  const updateProduct = async (productData: Partial<Product>) => {
+    try {
+      if (!productId) return;
+      const updatedRecord = await pb.collection('products').update(productId, productData);
+      setProduct({
+        id: updatedRecord.id,
+        name: updatedRecord.name,
+        base_price: updatedRecord.base_price,
+        case_per_pallet: updatedRecord.case_per_pallet,
+        case_size: updatedRecord.case_size,
+        categories: updatedRecord.categories,
+        collectionId: updatedRecord.collectionId,
+        collectionName: updatedRecord.collectionName,
+        created: updatedRecord.created,
+        updated: updatedRecord.updated,
+        description: updatedRecord.description,
+        image: pb.files.getURL(updatedRecord, updatedRecord.image),
+        sku: updatedRecord.sku
+      });
+    } catch (error) {
+      console.error('Error updating product:', error);
+    }
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -51,6 +75,25 @@ function ProductContent() {
     fetchProduct();
   }, [productId]);
 
+  // Add this useEffect to update the product with new values
+  useEffect(() => {
+    if (productId === "4931i50f9k2t1gl") {
+      updateProduct({
+        base_price: 0,
+        case_per_pallet: 24,
+        case_size: "200",
+        categories: ["8d6cnq248fgi5yz"],
+        collectionId: "pbc_4092854851",
+        collectionName: "products",
+        created: "2025-01-12 22:03:18.167Z",
+        description: "\u003cp\u003eIdeal for packaging and protecting hot or cold foods, our foam pacakging preserve food better than options such as paper or cardboard, avoiding food waste. This partitioned clamshell container enables you to package an entire meal without the threat of cross-contact or intermixing foods. Divided into three sections, one large compartment encompasses half of this container and the remaining half is divided into two smaller compartments. The large compartment is ideal for entrees such as sandwiches, burgers, or chicken fingers. Meanwhile, the smaller sections can be used for two separate sides. Featuring a hinged lid, this container can be quickly and easily closed to keep up with the fast-paced environment of your restaurant or take out venue.\u0026nbsp;\u003c/p\u003e",
+        name: "STYROFOAM HINGED 3 COMPARTMENT TAKE OUT CONTAINER - 200/Case",
+        sku: "VAPSNDU3CFOAM",
+        updated: "2025-02-27 22:34:44.194Z"
+      });
+    }
+  }, [productId]);
+
   const handleAddToCart = () => {
     if (!product) return;
     
@@ -59,13 +102,8 @@ function ProductContent() {
     
     const existingItem = cart.items.find(item => item.id === product.id);
     
-    // Calculate quantity to add based on case_per_pallet
-    let quantityToAdd = 1;
-    if (product.case_per_pallet > 1) {
-      const halfCase = Math.ceil(product.case_per_pallet / 2);
-      quantityToAdd = isFirstHalf ? halfCase : (product.case_per_pallet - halfCase);
-      setIsFirstHalf(!isFirstHalf);
-    }
+    // Use the selected quantity instead of calculating based on isFirstHalf
+    const quantityToAdd = selectedQuantity;
 
     // Show quantity feedback
     setQuantityAdded(quantityToAdd);
@@ -82,10 +120,6 @@ function ProductContent() {
         image: product.image,
         quantity: quantityToAdd
       });
-      // Only toggle isFirstHalf if we're starting a new item and case_per_pallet > 1
-      if (product.case_per_pallet > 1) {
-        setIsFirstHalf(false);
-      }
     }
     
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -171,21 +205,43 @@ function ProductContent() {
               <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-mint text-navy px-4 py-2 rounded-lg shadow-lg animate-fade-up">
                 <p className={`${dm_sans.className} font-bold`}>
                   +{quantityAdded} added to cart
-                  {product.case_per_pallet > 1 && (
-                    <span className="text-sm font-normal ml-1">
-                      ({isFirstHalf ? 'second half' : 'first half'} of case)
-                    </span>
-                  )}
                 </p>
               </div>
             )}
-            <button 
-              onClick={handleAddToCart}
-              className="flex items-center justify-center gap-2 px-6 py-3 text-navy border-2 border-navy bg-mint rounded-lg hover:bg-sage transition-colors"
-            >
-              <ShoppingCartIcon className="h-5 w-5" />
-              <span className={`${dm_sans.className} font-bold`}>Add to Cart</span>
-            </button>
+            <div className="flex items-center gap-4">
+              <select
+                value={selectedQuantity}
+                onChange={(e) => setSelectedQuantity(Number(e.target.value))}
+                className={`${inter.className} px-3 py-2 border-2 border-navy rounded-lg bg-white text-navy focus:outline-none focus:ring-2 focus:ring-navy`}
+              >
+                {product.case_per_pallet > 1 ? (
+                  // If case_per_pallet > 1, show half case increments up to 20
+                  Array.from({ length: 20 }, (_, i) => {
+                    const halfCase = Math.ceil(product.case_per_pallet / 2);
+                    const quantity = (i + 1) * halfCase;
+                    return (
+                      <option key={quantity} value={quantity}>
+                        {quantity} units {i === 0 ? '(half case)' : ''}
+                      </option>
+                    );
+                  })
+                ) : (
+                  // If case_per_pallet is 1, show regular increments
+                  Array.from({ length: 20 }, (_, i) => (
+                    <option key={i + 1} value={i + 1}>
+                      {i + 1} {i === 0 ? 'unit' : 'units'}
+                    </option>
+                  ))
+                )}
+              </select>
+              <button 
+                onClick={handleAddToCart}
+                className="flex items-center justify-center gap-2 px-6 py-3 text-navy border-2 border-navy bg-mint rounded-lg hover:bg-sage transition-colors"
+              >
+                <ShoppingCartIcon className="h-5 w-5" />
+                <span className={`${dm_sans.className} font-bold`}>Add to Cart</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
