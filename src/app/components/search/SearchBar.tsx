@@ -16,7 +16,7 @@ export default function SearchBar() {
       }
 
       try {
-        const productRecords = await pb.collection('products').getList(1, 100, {
+        const productRecords = await pb.collection('products').getList(1, 200, {
           filter: `name ~ "${searchTerm}" || description ~ "${searchTerm}" || sku ~ "${searchTerm}"`
         })
 

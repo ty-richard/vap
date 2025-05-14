@@ -17,7 +17,7 @@ function CategoryContent() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productRecords = await pb.collection('products').getList(1, 100);
+        const productRecords = await pb.collection('products').getList(1, 200);
         const fetchedProducts = productRecords.items
           .map(record => ({
             id: record.id,
