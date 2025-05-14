@@ -212,7 +212,7 @@ function ProductContent() {
               <select
                 value={selectedQuantity}
                 onChange={(e) => setSelectedQuantity(Number(e.target.value))}
-                className={`${inter.className} px-3 py-2 border-2 border-navy rounded-lg bg-white text-navy focus:outline-none focus:ring-2 focus:ring-navy`}
+                className={`${inter.className} flex items-center justify-center gap-2 w-50 px-6 py-3 border-2 border-navy rounded-lg bg-white text-navy focus:outline-none focus:ring-2 focus:ring-navy`}
               >
                 {product.case_per_pallet > 1 ? (
                   // If case_per_pallet > 1, show half case increments up to 20
@@ -221,7 +221,7 @@ function ProductContent() {
                     const quantity = (i + 1) * halfCase;
                     return (
                       <option key={quantity} value={quantity}>
-                        {quantity} units {i === 0 ? '(half case)' : ''}
+                        {quantity} units {i === 0 ? '(half case) ' : ''}
                       </option>
                     );
                   })
