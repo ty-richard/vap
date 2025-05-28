@@ -179,7 +179,7 @@ function ProductContent() {
             {product.case_per_pallet > 1 && (
               <div className="mb-6 flex items-center">
                 <p className="text-sm text-gray-600">
-                  Case per Pallet: {product.case_per_pallet} units
+                  Case per Pallet: {product.case_per_pallet}
                 </p>
                 <div className="ml-2 relative">
                   <div className="group">
@@ -221,7 +221,7 @@ function ProductContent() {
                     const quantity = (i + 1) * halfCase;
                     return (
                       <option key={quantity} value={quantity}>
-                        {quantity} units {i === 0 ? '(half case) ' : ''}
+                        {quantity} units {i === 0 ? '(half pallet)  ' : ''}
                       </option>
                     );
                   })
